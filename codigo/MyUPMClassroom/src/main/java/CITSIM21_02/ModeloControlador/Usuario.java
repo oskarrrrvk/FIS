@@ -25,7 +25,7 @@ public abstract class Usuario implements IUsuario {
 	protected Perfil perfil;
 	private Scanner scanner = new Scanner(System.in);
 
-	public Boolean login(String nombre, String constrasenia, String correo) {
+	public boolean login(String nombre, String constrasenia, String correo) {
 		boolean acceder = false;
 		int opcion;
 		System.out.println("que quiere hacer:\n\t1.logearse\n\t0.Olvide contrasenia");
@@ -50,7 +50,7 @@ public abstract class Usuario implements IUsuario {
 			}
 			if (!acceder) {
 				recuperarContrasenya();
-				return false;
+				acceder= false;
 			}
 
 		}

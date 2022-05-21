@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PASTest extends TestCase { //MIRAR PORQUE POR ALGUN CASUAL SALTAN NULL.POINTER.EXCEPTION
+public class PASTest extends TestCase {
 
     PAS pas1;
     PAS pas2;

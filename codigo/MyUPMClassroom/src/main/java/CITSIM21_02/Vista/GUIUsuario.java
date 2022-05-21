@@ -63,7 +63,6 @@ public class GUIUsuario {
             System.out.println("   Vuelva a escribir la misma contraseña: ");
             ctr2 = scan.nextLine();
         } while(!Objects.equals(ctr1, ctr2));
-        //System.out.println("  ->|LA CONTRASENIA ES: "+ctr1+" == "+ctr2+" |<-");
         user.setContrasenya(ctr1);
         System.out.println("   Introduzca su nombre: ");
         user.setNombre(scan.nextLine());

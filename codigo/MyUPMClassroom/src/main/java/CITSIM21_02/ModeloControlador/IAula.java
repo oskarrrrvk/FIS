@@ -14,5 +14,4 @@ package CITSIM21_02.ModeloControlador;//
 
 
 public interface IAula {
-	//String mostrarAula();
 }

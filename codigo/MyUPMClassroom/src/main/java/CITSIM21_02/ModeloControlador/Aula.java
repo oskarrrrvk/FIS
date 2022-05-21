@@ -68,9 +68,11 @@ public class Aula implements IAula {
 		this.Pas=Pas;
 	}
 
-	public void addObservador(Observador observador)
-	{
-		this.suscriptores.add(observador);
+	public void addObservador(Observador observador){
+			this.suscriptores.add(observador);
+	}
+	public boolean claseLlena(){
+		return suscriptores.size() >= aforo;
 	}
 
 	public void setTipoAula(TAula tipo)

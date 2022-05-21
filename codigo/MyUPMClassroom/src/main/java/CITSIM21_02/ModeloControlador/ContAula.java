@@ -21,7 +21,7 @@ public class ContAula implements IControladorAula {
 	}
 
 	@Override
-	public Boolean agregarAula(Aula aula){
+	public boolean agregarAula(Aula aula){
 		if(!existeAula(aula.getIdentificadorInterno()))
 		{
 			listaAulas.add(aula);
@@ -31,7 +31,7 @@ public class ContAula implements IControladorAula {
 			return false;
 	}
 
-	public Boolean eliminarAula(Aula aula) {
+	public boolean eliminarAula(Aula aula) {
 		if(listaAulas.isEmpty())
 			return false;
 		else if(!listaAulas.contains(aula))
@@ -42,7 +42,7 @@ public class ContAula implements IControladorAula {
 		}
 	}
 
-	public Boolean existeAula(String id){
+	public boolean existeAula(String id){
 		boolean existe = false;
 		Iterator<Aula> i= listaAulas.iterator();
 
@@ -55,6 +55,16 @@ public class ContAula implements IControladorAula {
 	}
 	public ArrayList<Aula> getListaAulas(){
 		return this.listaAulas;
+	}
+
+	public Aula getAulaId(String id)
+	{
+		Aula aula = null;
+		for(Aula i: listaAulas)
+			if(i.getIdentificadorInterno().equals(id))
+				aula=i;
+
+		return aula;
 	}
 
 }

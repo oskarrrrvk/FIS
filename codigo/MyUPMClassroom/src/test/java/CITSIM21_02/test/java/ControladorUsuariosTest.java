@@ -57,6 +57,33 @@ public class ControladorUsuariosTest extends TestCase {
 
     }
 
+    public void testAgregarUsuario() {
+        assertEquals(true,contUsu.agregarUsuario(usuario2));
+        /**
+         * Puede agregar el usuario porque pertenece a la UPM y no ha sido agregado anteriormente
+         * */
+    }
+
+    public void testAgregarUsuario2() {
+        assertEquals(false,contUsu.agregarUsuario(usuario1));
+        /**
+         * No puedo agregar el usuario porque el usuario ya ha sido agregado
+         * */
+    }
+
+    public void testAgregarUsuario3() {
+        assertEquals(false,contUsu.agregarUsuario(usuario4));
+        /**
+         * No puedo agregar el usuario porque el usuario no usa correo de la UPM
+         * */
+    }
+    public void testAgregarUsuario4() {
+        assertEquals(true,contUsu.agregarUsuario(usuario3));
+        /**
+         * Puede agregar el usuario porque pertenece a la UPM y no ha sido agregado anteriormente
+         * */
+    }
+
     @Test
     public void testAltaUsuario() {
         assertEquals(null,contUsu.AltaUsuario(correo1));
@@ -127,90 +154,80 @@ public class ControladorUsuariosTest extends TestCase {
          * No es un correo perteneciente a la UPM por lo que no se puede dar de alta
          * */
     }
-
-    public void testLogearPAS() {
-        assertEquals(true,contUsu3.loguearPAS(correo3,"1234"));
+    
+    public void testLogearMenu(){
+        assertEquals(true,contUsu.loguearMenu(correo1,"1234","@alumnos.upm.es"));
         /**
-         * Como existe el usuario puede logearse en el sistema
+         * Se puede logear poque el correo la contrasenia y el tipo de usuario son acordes con el encontrado
+         * */
+    }
+    public void testLogearMenu2(){
+        assertEquals(true,contUsu2.loguearMenu(correo2,"1234","pdi@upm.es"));
+        /**
+         * Se puede logear poque el correo la contrasenia y el tipo de usuario son acordes con el encontrado
+         * */
+    }
+    public void testLogearMenu3(){
+        assertEquals(true,contUsu3.loguearMenu(correo3,"1234","pas@upm.es"));
+        /**
+         * Se puede logear porque el correo la contrasenia y el tipo de usuario son acordes con el encontrado
+         * */
+    }
+    public void testLogearMenu4(){
+        assertEquals(false,contUsu.loguearMenu(correo2,"1234","pdi@upm.es"));
+        /**
+         * No se puede logear porque el correo no se encuantra entre los usuarios
+         * */
+    }
+    public void testLogearMenu5(){
+        assertEquals(false,contUsu.loguearMenu(correo1,"1111","@alumnos.upm.es"));
+        /**
+         * No se puede logear porque la contrasenia es incorrecta
+         * */
+    }
+    public void testLogearMenu6(){
+        assertEquals(false,contUsu2.loguearMenu(correo2,"1234","@alumnos.upm.es"));
+        /**
+         * No se puede logear porque el correo es distinto al tipo
+         * */
+    }
+    public void testLogearMenu7(){
+        assertEquals(false,contUsu2.loguearMenu(correo1,"1234","pdi@upm.es"));
+        /**
+         * No se puede logear porque el correo es distinto al que esta registrado
          * */
     }
 
-    public void testLogearPAS2() {
-        assertEquals(false,contUsu3.loguearPAS(correo5,"1234"));
+    public void testLogearMenu8(){
+        assertEquals(false,contUsu2.loguearMenu(correo1,"1234","@alumnos.upm.es"));
         /**
-         * No puede logearse porque el correo es incorrecto
+         * No se puede logear porque el correo no se encuentra entre los guardados
          * */
     }
 
-    public void testLogearPAS3() {
-        assertEquals(false,contUsu3.loguearPAS(correo4,"1234"));
+    public void testLogearMenu9(){
+        assertEquals(false,contUsu2.loguearMenu(correo2,"1111","pdi@upm.es"));
         /**
-         * No puede logearse porque el correo que ha escrito no acaba en pas@upm.es
+         * No se puede logear porque la contrasenia es incorrecta
          * */
     }
 
-    public void testLogearPAS4() {
-        assertEquals(false,contUsu3.loguearPAS(correo3,"1111"));
+    public void testLogearMenu10(){
+        assertEquals(false,contUsu3.loguearMenu(correo2,"1234","pas@upm.es"));
         /**
-         * No puede logearse porque la contrasenia es incorrecta
+         * No se puede logear porque el correo es distinto al tipo
          * */
     }
-    public void testGetPAS() {
-        assertEquals(usuario3,contUsu3.getPAS(correo3));
+    public void testLogearMenu11(){
+        assertEquals(false,contUsu3.loguearMenu(correo2,"1234","pdi@upm.es"));
         /**
-         * Encuentra el pas correcto
+         * No se puede logear porque el correo no se encuentra entre los guardados
          * */
     }
-    public void testGetPAS2() {
-        assertEquals(null,contUsu3.getPAS(correo1));
+    public void testLogearMenu12(){
+        assertEquals(false,contUsu3.loguearMenu(correo3,"1111","pas@upm.es"));
         /**
-         * No encuentra el pas correcto porque el correo es de un Alumno
-         * */
-    }
-    public void testGetPAS3() {
-        assertEquals(null,contUsu3.getPAS(correo2));
-        /**
-         * No encuentra el pas correcto porque el correo es de un PDI
-         * */
-    }
-    public void testGetPAS4() {
-        assertEquals(null,contUsu3.getPAS(correo5));
-        /**
-         * No encuentra el pas correcto porque el correo no pertenece al PAS
-         * */
-    }
-
-    public void testGetPAS5() {
-        assertEquals(null,contUsu3.getPAS(correo4));
-        /**
-         * No encuentra el pas correcto porque el correo no pertenece a la UPM
-         * */
-    }
-
-    public void testAgregarUsuario() {
-        assertEquals(true,contUsu.agregarUsuario(usuario2));
-        /**
-         * Puede agregar el usuario porque pertenece a la UPM y no ha sido agregado anteriormente
-         * */
-    }
-
-    public void testAgregarUsuario2() {
-        assertEquals(false,contUsu.agregarUsuario(usuario1));
-        /**
-         * No puedo agregar el usuario porque el usuario ya ha sido agregado
-         * */
-    }
-
-    public void testAgregarUsuario3() {
-        assertEquals(false,contUsu.agregarUsuario(usuario4));
-        /**
-         * No puedo agregar el usuario porque el usuario no usa correo de la UPM
-         * */
-    }
-    public void testAgregarUsuario4() {
-        assertEquals(true,contUsu.agregarUsuario(usuario3));
-        /**
-         * Puede agregar el usuario porque pertenece a la UPM y no ha sido agregado anteriormente
+         * No se puede logear porque la contrasenia es incorrecta
          * */
     }
 

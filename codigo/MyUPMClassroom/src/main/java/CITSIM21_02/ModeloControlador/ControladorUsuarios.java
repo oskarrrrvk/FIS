@@ -59,35 +59,38 @@ public class ControladorUsuarios implements IControladorUsuario {
 		return new PDI(correo);
 	}
 
-	public boolean loguearPAS(String correo, String ctr)
+	public boolean loguearMenu(String correo, String ctr, String tipo)
 	{
 		boolean res=false;
-		PAS aux= this.getPAS(correo);
 
-		if(correo.endsWith("pas@upm.es"))
-			if(aux != null && aux.getContrasenya().equals(Cifrado.cifrar(ctr)))
-				res=true;
+		if(correo.endsWith(tipo))
+		{
+			Usuario aux= this.getUsuario(correo);
 
+			if(aux != null)
+				if(aux.getCorreo().equals(correo) && aux.getContrasenya().equals(Cifrado.cifrar(ctr)))
+					res=true;
+		}
 		return res;
 	}
 
-	public PAS getPAS(String correo)
+	public Usuario getUsuario(String correo)
 	{
 		boolean existe=false;
-		PAS Pas= null;
+		Usuario usuario= null;
 
 		Iterator<Usuario> i= listaUsuarios.iterator();
 
 		while(i.hasNext() && !existe)
 		{
-			PAS aux= (PAS) i.next();
+			Usuario aux= i.next();
 			if(aux.getCorreo().equals(correo))
 			{
 				existe=true;
-				Pas= aux;
+				usuario= aux;
 			}
 		}
-		return Pas;
+		return usuario;
 	}
 
 	public boolean agregarUsuario(Usuario usuario) {

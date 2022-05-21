@@ -11,6 +11,7 @@ package CITSIM21_02.ModeloControlador;//
 
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class Observador extends Usuario implements IObservador {
 	private ArrayList<Aula> aulas;
@@ -22,13 +23,10 @@ public abstract class Observador extends Usuario implements IObservador {
 
 	public boolean suscribirse(Aula aula)
 	{
-		if(aulas.contains(aula))
-		{
+		if(aulas.contains(aula)) {
 			System.out.println("ya esta suscrito al aula");
 			return false;
-		}
-		else
-		{
+		} else {
 			this.aulas.add(aula);
 			aula.addObservador(this);
 			return true;

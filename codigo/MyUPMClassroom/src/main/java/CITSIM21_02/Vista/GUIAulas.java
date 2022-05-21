@@ -43,6 +43,11 @@ public class GUIAulas {
 		} while(salir);
 		aula.setTipoAula(cat);
 	}
+
+	public String pedirIdAula_Usuario(String id)
+	{
+		return new Scanner(System.in).nextLine();
+	}
 	public void show(){
 
 	}

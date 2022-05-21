@@ -14,5 +14,6 @@ package CITSIM21_02.ModeloControlador;//
 
 
 public interface IUsuario {
-	Boolean login(String nick, String contrasenia, String ns);
+	boolean login(String nick, String contrasenia, String ns);
+
 }

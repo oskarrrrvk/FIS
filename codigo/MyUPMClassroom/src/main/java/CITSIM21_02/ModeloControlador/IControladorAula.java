@@ -14,7 +14,9 @@ package CITSIM21_02.ModeloControlador;//
 
 
 public interface IControladorAula {
-	Boolean agregarAula(Aula aula);
+	boolean agregarAula(Aula aula);
 
-	Boolean eliminarAula(Aula aula);
+	boolean eliminarAula(Aula aula);
+	
+	boolean existeAula(String id);
 }

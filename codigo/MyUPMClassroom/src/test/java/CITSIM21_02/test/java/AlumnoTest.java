@@ -12,8 +12,10 @@ import org.junit.Test;
 public class AlumnoTest extends TestCase {
     Alumno alumno;
     Alumno alumno2;
+    Alumno alumno3;
     Perfil perfil;
     Aula aula;
+    Aula aula2;
 
     @Before
     public void setUp(){
@@ -23,10 +25,16 @@ public class AlumnoTest extends TestCase {
                 "Palotes", "01234567L", perfil, "223");
         alumno2 = new Alumno("pepito@gmail.com", "sisis", "Pepito", "Los",
                 "Palotes", "01234567L", perfil, "223");
+        alumno3 = new Alumno("pepito@gmail.com", "sisis", "Pepito", "Los",
+                "Palotes", "01234567L", perfil, "223");
 
-        aula = new Aula("ETSISI","br0299",50, TAula.MIXTA);
+        aula = new Aula("ETSISI","CIC1",50, TAula.MIXTA);
+        aula2 = new Aula("ETSISI","CIC2",2, TAula.MIXTA);
+
 
         alumno2.suscribirse(aula);
+        alumno.suscribirse(aula2);
+        alumno2.suscribirse(aula2);
     }
 
     @Test
@@ -36,5 +44,9 @@ public class AlumnoTest extends TestCase {
 
     public void testSuscribirse2() {
         assertEquals(false,alumno2.suscribirse(aula));
+    }
+
+    public void testSuscribirse3() {
+        assertEquals(false,alumno3.suscribirse(aula2));
     }
 }

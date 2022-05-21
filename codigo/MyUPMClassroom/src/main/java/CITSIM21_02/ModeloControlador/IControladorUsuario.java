@@ -17,4 +17,9 @@ import servidor.UPMUsers;
 
 public interface IControladorUsuario {
 	UPMUsers AltaUsuario(String correo);
+	PAS crearPAS(String correo);
+	Alumno crearAlumno(String correo);
+	boolean loguearMenu(String correo, String ctr, String tipo);
+
+	boolean agregarUsuario(Usuario usuario);
 }

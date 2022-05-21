@@ -108,13 +108,13 @@ public class MyUPMClassRoom {
                 }
                 case 2:{
                     String correo= app.getGUsuario().pedirCorreo();
-                    if(app.getCUsuario().loguearPAS(correo, app.GUsuario.pedirContraseniav2()))
+                    if(app.getCUsuario().loguearMenu(correo, app.GUsuario.pedirContraseniav2(), "pas@upm.es"))
                     {
                         String id = app.getGAulas().pedirIdAula();
                         if(app.getContAula().existeAula(id))
                             System.out.println("   Error: El aula que intenta agregar ya existe");
                         else {
-                            PAS pas = app.getCUsuario().getPAS(correo);
+                            PAS pas = (PAS) app.getCUsuario().getUsuario(correo);
                             Aula aula = pas.darAltaAula(id, pas);
                             app.getGAulas().rellenarAula(aula);
                             app.getContAula().agregarAula(aula);
@@ -126,14 +126,45 @@ public class MyUPMClassRoom {
                     break;
                 }
                 case 3:{
-                    app.getGCAulas().show(app.getContAula());
+                    String correo= app.getGUsuario().pedirCorreo();
+                    if(app.getCUsuario().loguearMenu(correo, app.GUsuario.pedirContraseniav2(), "@alumnos.upm.es"))
+                    {
+                        String id= String.valueOf(app.getGCAulas().show(app.getContAula()));
+                        Aula aula= app.getContAula().getAulaId(id);
+
+                        if(aula == null)
+                            System.out.println("   El aula introducida no existe");
+                        else if (aula.claseLlena())
+                            System.out.println("  El aula "+ id + " del centro " + aula.getCentro() +  " esta llena");
+                        else
+                        {
+                            ((Alumno) app.getCUsuario().getUsuario(correo)).suscribirse(aula);
+                            System.out.println("   Suscripción al aula " + id + " del centro " + aula.getCentro() + " realizada con exito");
+                        }
+                    }
+                    else
+                        System.out.println("   Los parametros introducidos no son correctos");
                     break;
                 }
-                /*case 4:{
-                    app.getGCAulas().show(app.getContAula());
+                case 4:{
+                    String correo= app.getGUsuario().pedirCorreo();
+                    if(app.getCUsuario().loguearMenu(correo, app.GUsuario.pedirContraseniav2(), "pdi@upm.es"))
+                    {
+                        String id= String.valueOf(app.getGCAulas().show(app.getContAula()));
+                        Aula aula= app.getContAula().getAulaId(id);
 
+                        if(aula == null)
+                            System.out.println("   El aula introducida no existe");
+                        else
+                        {
+                            ((PDI) app.getCUsuario().getUsuario(correo)).suscribirse(aula);
+                            System.out.println("   Suscripción al aula " + id + " del centro " + aula.getCentro() + " realizada con exito");
+                        }
+                    }
+                    else
+                        System.out.println("   Los parametros introducidos no son correctos");
                     break;
-                }*/
+                }
             }
         } while(menu!=0);
     }

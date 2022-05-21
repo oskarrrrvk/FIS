@@ -40,15 +40,6 @@ public class PAS extends Usuario {
 
 	public boolean addAula(Aula aula){
 		boolean existe = false;
-		/*
-		Iterator<Aula> i= aulas.iterator();
-
-		while(i.hasNext() && !existe)
-		{
-			if(aula.getIdentificadorInterno().equals(i.next().getIdentificadorInterno()))
-					existe=true;
-		}
-*/
 		for(Aula amigo: aulas)
 		{
 			if(aula.getIdentificadorInterno().equals(amigo.getIdentificadorInterno()))
